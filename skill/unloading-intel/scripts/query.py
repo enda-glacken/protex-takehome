@@ -60,15 +60,30 @@ def runs(seconds, min_len, merge_gap=1):
     return [(a, b) for a, b in out if b - a + 1 >= min_len]
 
 
+def belt_stops(con):
+    """Reported belt stops as (start_s, end_s). Read from the store, so the rule that decides what
+    counts as a stop lives in one place (the pipeline) and is not repeated here."""
+    r = con.execute("SELECT evidence FROM insights WHERE kind = 'belt_stopped' LIMIT 1").fetchone()
+    if not r:
+        return []
+
+    def sec(s):
+        t = 0
+        for part in s.split(":"):
+            t = t * 60 + int(part)
+        return t
+    return [(sec(x), sec(y)) for x, y in json.loads(r[0]).get("all_stops", [])]
+
+
 def stats(con, a, b):
     r = rows(con, """SELECT COUNT(*) seconds, AVG(present) avg_present, MAX(present) max_present,
                      AVG(handling) avg_handling, MAX(handling) max_handling, AVG(waiting) avg_waiting,
                      SUM(waiting) waiting_worker_seconds, SUM(belt_touches) belt_contacts,
-                     AVG(belt_occupancy) avg_belt_occupancy,
-                     SUM(belt_motion IS NOT NULL AND belt_motion < 5) belt_still_seconds
+                     AVG(belt_occupancy) avg_belt_occupancy
                      FROM timeline WHERE t_s BETWEEN ? AND ?""", (a, b))[0]
     r = {k: (round(v, 2) if isinstance(v, float) else v) for k, v in r.items()}
     r["belt_contacts_per_min"] = round((r["belt_contacts"] or 0) * 60 / max(r["seconds"], 1), 1)
+    r["belt_stopped_seconds"] = sum(max(0, min(b, y) - max(a, x) + 1) for x, y in belt_stops(con))
     return r
 
 
@@ -78,6 +93,8 @@ def notes(con):
          "not ground truth.",
          "Belt contacts are hand-to-belt events: a proxy for items handled at the belt, not a parcel count. "
          "belt_occupancy is the estimated share (0..1) of the visible belt covered by freight.",
+         "belt_stopped_seconds counts the seconds of a period that fall inside a reported belt stop (20 s or "
+         "more, with freight on the belt). Shorter pauses and an empty, running belt are not stops.",
          "Worker labels (W1, W2...) are tracker ids; one person can receive several ids if they leave view. "
          "Prefer crew-level counts over per-person claims."]
     if v["synthetic"]:

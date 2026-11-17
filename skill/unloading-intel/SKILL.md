@@ -58,8 +58,11 @@ All commands print JSON. Times are seconds from the start of the clip, with `sta
 - Review calls and notes belong to the operations manager. Quote notes as theirs, word for word. Treat
   "Not what happened" as evidence against the rule that raised the event, and say so when you report
   that rule's findings. If no events file has been exported yet, say how to get one (web app, Export data).
-- For "biggest opportunities", rank by impact: time the belt stood still, then waiting worker-seconds
-  from a crew larger than the work, then time the belt ran empty. Give at most three, each with evidence.
+- For "biggest opportunities", keep the order of the `opportunities` list: it is ranked by the crew
+  time spent waiting behind each cause. Give at most three, each with evidence. Say "crew time", not
+  "worker-seconds".
+- A period counts as a belt stop only where `belt_stopped_seconds` is above zero. A near-empty belt
+  with people waiting is "belt empty", not a stop.
 
 The store is opened read-only. Set `UNLOADING_DB` to point at a different store, and
 `UNLOADING_APP_URL` if the web app is not on `http://localhost:5173`.
