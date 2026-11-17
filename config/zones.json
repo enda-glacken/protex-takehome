@@ -1,0 +1,13 @@
+{
+  "_comment": "FIRST-PASS zones for the reference video, estimated from stills. Check them in the app (Edit zones) and redraw if they are off, then run `./run.sh analytics`. Coordinates are normalised 0..1 (x right, y down). The belt polygon is inset slightly so the yellow rails are not counted as freight.",
+  "zones": [
+    { "id": "belt", "name": "Conveyor belt", "kind": "belt",
+      "polygon": [[0.137, 0.180], [0.195, 0.113], [0.962, 0.652], [0.918, 0.822]] },
+    { "id": "sort-end", "name": "Sort end (pick-off)", "kind": "work",
+      "polygon": [[0.0, 0.0], [0.45, 0.0], [0.45, 0.35], [0.36, 0.62], [0.0, 0.62]] },
+    { "id": "far-side", "name": "Far side of belt", "kind": "work",
+      "polygon": [[0.45, 0.0], [1.0, 0.0], [1.0, 0.60], [0.45, 0.35]] },
+    { "id": "floor", "name": "Near-side floor", "kind": "staging",
+      "polygon": [[0.0, 0.62], [0.36, 0.62], [0.93, 0.90], [0.93, 1.0], [0.0, 1.0]] }
+  ]
+}

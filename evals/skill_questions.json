@@ -1,0 +1,10 @@
+{
+  "_comment": "The four questions from the brief. Fill in `result` (pass/fail) and `notes` after asking Claude through the skill.",
+  "checks": ["time ranges match ground truth", "figure matches ground truth", "includes a video link", "states confidence or caveat"],
+  "questions": [
+    { "q": "When was the conveyor most underutilised?", "result": null, "notes": "" },
+    { "q": "How many workers were actively unloading during the busiest period?", "result": null, "notes": "" },
+    { "q": "Show me periods where three people were present but only one appeared to be working.", "result": null, "notes": "" },
+    { "q": "What are the biggest opportunities to improve unloading efficiency?", "result": null, "notes": "" }
+  ]
+}

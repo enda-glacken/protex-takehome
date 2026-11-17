@@ -1,0 +1,9 @@
+{
+  "_comment": "Per-deployment context. The customer and logo are MOCK placeholders for the prototype (a fictional brand).",
+  "customer": "Brackenway Express",
+  "logo": "customer-logo.svg",
+  "site": "Inbound sort, conveyor 2",
+  "camera": "IP Camera 2",
+  "belt_action": "taken off",
+  "_belt_action_help": "What the visible workers do at the belt: 'taken off' (belt feeds them) or 'placed on' (they feed the belt). Only changes wording."
+}

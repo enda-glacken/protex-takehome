@@ -1,0 +1,4 @@
+# CV stage only. The analytics, export and Claude skill run on the Python standard library.
+ultralytics>=8.3
+lap>=0.5.12
+yt-dlp

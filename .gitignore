@@ -1,0 +1,14 @@
+.DS_Store
+.ipynb_checkpoints/
+__pycache__/
+node_modules/
+.env
+*.mp4
+*.mov
+.venv/
+*.pt
+dist/
+web/dist/
+runs/
+skill/unloading-intel/data/
+*.db-journal

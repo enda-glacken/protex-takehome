@@ -1,0 +1,11 @@
+{
+  "_comment": "Zones that match the scripted positions in pipeline/unloading/synth.py. Used by tests and by `./run.sh demo`; NOT the real site zones.",
+  "zones": [
+    { "id": "belt", "name": "Conveyor belt", "kind": "belt",
+      "polygon": [[0.36, 0.42], [0.64, 0.42], [0.70, 0.98], [0.30, 0.98]] },
+    { "id": "unload", "name": "Working area", "kind": "work",
+      "polygon": [[0.10, 0.20], [0.90, 0.20], [0.90, 0.60], [0.10, 0.60]] },
+    { "id": "staging", "name": "Staging / waiting area", "kind": "staging",
+      "polygon": [[0.02, 0.60], [0.30, 0.60], [0.28, 0.98], [0.02, 0.98]] }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "_comment": "Every threshold the analytics uses, in one place. Tune against the real video, then re-run `./run.sh analytics` (seconds, no video needed).",
+  "min_track_seconds": 3,
+  "min_track_conf": 0.5,
+  "keypoint_min_conf": 0.3,
+  "belt_reach_margin": 0.015,
+  "handling_hands_on_belt_share": 0.25,
+  "handling_min_wrist_speed_at_belt": 0.2,
+  "handling_wrist_speed": 0.9,
+  "moving_body_speed": 0.45,
+  "smooth_window_s": 3,
+  "touch_debounce_ms": 800,
+  "belt_colour_threshold": 45,
+  "belt_motion_min_cells": 12,
+  "insights": {
+    "min_episode_s": 8,
+    "merge_gap_s": 3,
+    "idle_crew_min_present": 4,
+    "idle_crew_max_handling_share": 0.34,
+    "belt_gap_min_s": 10,
+    "belt_empty_occupancy": 0.10,
+    "belt_full_occupancy": 0.45,
+    "belt_stopped_motion": 5.0,
+    "belt_stop_min_s": 20,
+    "staffing_min_seconds": 60,
+    "trend_block_s": 120,
+    "slowdown_window_s": 30,
+    "slowdown_ratio": 0.5
+  }
+}
